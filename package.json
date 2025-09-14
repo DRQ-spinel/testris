@@ -1,9 +1,0 @@
-{
-  "name": "testris",
-  "version": "1.0.0",
-  "description": "Modern Tetris clone rendered with PixiJS",
-  "scripts": {
-    "start": "",
-    "test": "echo \"No tests specified\""
-  }
-}
