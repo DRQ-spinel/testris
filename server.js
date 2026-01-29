@@ -1,18 +1,29 @@
-// server.js
-const express = require('express');
+const http = require('http');
+const fs = require('fs');
 const path = require('path');
-const app = express();
-const PORT = 3000;
-app.listen(port, "0.0.0.0", () => console.log("listening:", port));
 
-// publicフォルダを静的ファイルとして公開
-app.use(express.static(path.join(__dirname, 'public')));
+const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+const server = http.createServer((req, res) => {
+  const filePath = req.url === '/' ? '/index.html' : req.url;
+  const ext = path.extname(filePath);
+  const contentType = {
+    '.html': 'text/html',
+    '.js': 'text/javascript',
+    '.css': 'text/css'
+  }[ext] || 'text/plain';
+
+  fs.readFile(path.join(__dirname, 'public', filePath), (err, content) => {
+    if (err) {
+      res.writeHead(404);
+      res.end('Not found');
+    } else {
+      res.writeHead(200, {'Content-Type': contentType});
+      res.end(content);
+    }
+  });
 });
 
-app.listen(PORT, () => {
-    console.log(`Tetracore server running at http://localhost:${PORT}`);
-
+server.listen(port, () => {
+  console.log(`Tetracore server running on port ${port}`);
 });
