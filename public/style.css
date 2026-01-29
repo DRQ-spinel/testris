@@ -1,0 +1,201 @@
+/* public/style.css */
+body {
+    background-color: #050518;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* 全体のラッパー */
+.ui-wrapper {
+    display: flex;
+    gap: 15px; /* 隙間も少し狭める */
+    align-items: stretch;
+    justify-content: center;
+    transform: scale(1.7);
+}
+
+/* カラム共通 */
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 左カラム（幅を縮小） */
+.side-left {
+    align-items: flex-end;
+    width: 110px; /* 140 -> 110 */
+}
+
+/* 中央カラム */
+.main-center {
+    position: relative;
+    border: 4px solid #fff;
+    background: #000;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: block; 
+}
+
+/* 右カラム（幅を縮小） */
+.side-right {
+    align-items: flex-start;
+    width: 110px; /* 140 -> 110 */
+}
+
+/* Canvasのスタイル */
+canvas {
+    display: block;
+}
+
+#tetris {
+    background-color: #000;
+}
+
+/* --- パネル (HOLD / NEXT) デザイン --- */
+.panel-container {
+    background-color: #fff;
+    padding: 3px;
+    margin-bottom: 0; 
+    position: relative;
+    
+    clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% 100%, 
+        20px 100%, 
+        0 calc(100% - 20px)
+    );
+}
+
+.panel-content {
+    background-color: #000;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px; /* 100 -> 80 */
+    
+    clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% 100%, 
+        20px 100%, 
+        0 calc(100% - 20px)
+    );
+}
+
+.panel-header {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    font-size: 0.8rem; /* 少し小さく */
+    color: #aaa;
+    font-weight: bold;
+    z-index: 10;
+    letter-spacing: 1px;
+}
+
+.next-container .panel-content {
+    padding-top: 25px;
+}
+
+.hold-container .panel-content {
+    padding-top: 25px;
+}
+
+/* --- STATS (左下) --- */
+.stats-container {
+    text-align: right;
+    margin-top: auto;
+    padding-bottom: 0; 
+}
+
+.stat-row {
+    margin-bottom: 12px;
+}
+
+.stat-row:last-child {
+    margin-bottom: 0; 
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #aaa;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.3rem; /* 少し小さく */
+    font-weight: 400;
+    color: #fff;
+}
+
+/* --- LEVEL (右下) --- */
+.level-container {
+    margin-top: auto;
+    padding-bottom: 0;
+}
+
+.level-circle {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 50px; /* 60 -> 50 */
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.level-label {
+    font-size: 0.5rem;
+    font-weight: bold;
+}
+
+.level-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* --- スタートオーバーレイ --- */
+#start-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: opacity 0.3s;
+}
+
+.start-text {
+    color: #fff;
+    font-size: 1.1rem;
+    border: 2px solid #fff;
+    padding: 8px 16px;
+    animation: blink 2s infinite;
+    text-align: center;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
