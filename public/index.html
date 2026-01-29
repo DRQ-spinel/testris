@@ -1,0 +1,64 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TETRACORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="ui-wrapper">
+        <!-- (中身は元のまま) -->
+        <div class="column side-left">
+            <div class="panel-container hold-container">
+                <div class="panel-header">HOLD</div>
+                <div class="panel-content">
+                    <canvas id="hold" width="90" height="60"></canvas>
+                </div>
+            </div>
+            <div class="stats-container">
+                <div class="stat-row">
+                    <div class="stat-label">LINES</div>
+                    <div class="stat-value" id="lines">0</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label">TIME</div>
+                    <div class="stat-value" id="time">00:00</div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label">SCORE</div>
+                    <div class="stat-value" id="score">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column main-center">
+            <div class="game-border">
+                <canvas id="tetris" width="200" height="400"></canvas>
+            </div>
+            <div id="start-overlay" onclick="window.startGameGlobal()">
+                <div class="start-text">CLICK TO START</div>
+            </div>
+        </div>
+
+        <div class="column side-right">
+            <div class="panel-container next-container">
+                <div class="panel-header">NEXT</div>
+                <div class="panel-content">
+                    <canvas id="next" width="90" height="270"></canvas>
+                </div>
+            </div>
+            <div class="level-container">
+                <div class="level-circle">
+                    <div class="level-label">LEVEL</div>
+                    <div class="level-value" id="level">1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- type="module"を指定して main.js を読み込む -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>
